@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 
+import '../auth/components.dart';
+
 Widget buildCheckoutButton({required name, required onPress}) {
   return Padding(
     padding: const EdgeInsets.only(top: 49, left: 54, right: 54, bottom: 48),
@@ -65,15 +67,15 @@ Widget payFormField({
   required String hint,
   required type,
   required double width,
-  bool obscure=false,
+  bool obscure = false,
   double top = 1,
-  double bottom=1,
-  double right=1,
-  double left=1,
+  double bottom = 1,
+  double right = 1,
+  double left = 1,
 }) =>
     Padding(
       padding:
-           EdgeInsets.only(top:top, left: left, right: right,bottom: bottom),
+          EdgeInsets.only(top: top, left: left, right: right, bottom: bottom),
       child: Container(
         width: width,
         height: 43,
@@ -98,13 +100,13 @@ Widget payFormField({
               filled: true,
               fillColor: Colors.grey.shade900,
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
+                  borderSide: const BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.circular(10)),
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
+                  borderSide: const BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.circular(10)),
               border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
+                  borderSide: const BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.circular(10)),
             ),
           ),
@@ -146,5 +148,111 @@ Widget buildCheckDropdown(
         );
       }).toList(),
     ),
+  );
+}
+
+Widget buildBottomNav({required onTap, required name}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Container(
+      height: 75,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: mainColor,
+        borderRadius: const BorderRadius.only(
+            bottomRight: const Radius.circular(20),
+            bottomLeft: Radius.circular(20)),
+      ),
+      child: Center(
+        child: TextButton(
+          onPressed: onTap,
+          child: Text(
+            '$name',
+            style: GoogleFonts.roboto(
+                fontSize: 24, fontWeight: FontWeight.w700, color: Colors.white),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget buildMovieCast() {
+  return Padding(
+    padding: const EdgeInsets.all(10),
+    child: Column(
+      children: [
+        Image.asset(
+          'assets/card.png',
+          width: 80,
+          height: 100,
+        ),
+        Text(
+          'Tom Holland',
+          style: GoogleFonts.roboto(
+              fontSize: 11, fontWeight: FontWeight.w400, color: Colors.white),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget buildDateCard({required day, required onTap, required color}) {
+  return Padding(
+    padding: const EdgeInsets.all(5),
+    child: GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 40,
+        width: 65,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: color,
+        ),
+        child: GestureDetector(
+          onTap: onTap,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '$day',
+                style: GoogleFonts.roboto(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white),
+              ),
+              //SizedBox(height: 8,),
+              Text(
+                'February',
+                style: GoogleFonts.roboto(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget buildMovieTime({required time}) {
+  return Text(
+    '$time',
+    style: GoogleFonts.roboto(
+        fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
+  );
+}
+
+Widget buildSeatIcon({required seatIcon,required onPress,required color}){
+  return Row(
+    children: [
+      IconButton(
+        onPressed: onPress,
+        icon: Icon(seatIcon,color: color,size: 23,),
+      ),
+      SizedBox(width: 1,),
+    ],
   );
 }

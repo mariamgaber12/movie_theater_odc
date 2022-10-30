@@ -2,15 +2,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odc_movie_theater/cubit/authentication/auth_cubit.dart';
-import 'package:odc_movie_theater/view/pages/authentication/login/login.dart';
-import 'package:odc_movie_theater/view/pages/checkout/reservation.dart';
-import 'package:odc_movie_theater/view/pages/home/home_layout.dart';
-import 'cubit/home/home_cubit.dart';
+import 'package:odc_movie_theater/view/pages/checkout/movie_detiels.dart';
 import 'cubit/main/main_cubit.dart';
 import 'view/componentes/auth/components.dart';
-import 'view/pages/authentication/splash.dart';
-import 'view/pages/checkout/checkout_done.dart';
-import 'view/pages/checkout/checkout_pay.dart';
 import 'view_model/network/dio_helper.dart';
 
 void main() async {
@@ -32,7 +26,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AuthenticationCubit(),
         ),
-
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -40,10 +33,10 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.red,
             appBarTheme: const AppBarTheme(
               centerTitle: true,
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.black,
               elevation: 0.0,
             )),
-        home: const Reservation(),
+        home: const MovieDetails(),
       ),
     );
   }

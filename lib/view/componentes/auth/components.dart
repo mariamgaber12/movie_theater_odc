@@ -29,6 +29,35 @@ Widget buildButton({required name, required onPress}) {
   );
 }
 
+Widget buildOutlineButton({required name, required onPress}) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 20, left: 45, right: 45,bottom: 15),
+    child: GestureDetector(
+      onTap: onPress,
+      child: Container(
+        width: double.infinity,
+        height: 45,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(width: 2.2,color: mainColor),
+            color: Colors.white),
+        child: Center(
+          child: Text(
+            name,
+            style: textstyle.copyWith(color: mainColor),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget myDriver() => Padding(
+  padding: const EdgeInsets.only(left: 20, right: 25,),
+  child: Divider(
+    color: Colors.grey[400]!,
+  ),
+);
 
 void navigateTo(context, widget) => Navigator.push(
   context,

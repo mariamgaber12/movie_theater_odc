@@ -341,35 +341,12 @@ class _CheckoutPayState extends State<CheckoutPay> {
           ),
         ],
       ),
-      bottomNavigationBar: GestureDetector(
-        onTap: () {
-          navigateTo(context, const CheckoutDone());
-        },
-        child: Container(
-          height: 75,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: mainColor,
-            borderRadius: const BorderRadius.only(
-                bottomRight: const Radius.circular(20),
-                bottomLeft: Radius.circular(20)),
-          ),
-          child: Center(
-            child: TextButton(
-              onPressed: () {
-                navigateTo(context, const CheckoutDone());
-              },
-              child: Text(
-                'Pay Now',
-                style: GoogleFonts.roboto(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white),
-              ),
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar:
+      buildBottomNav(
+          onTap: () {
+            navigateTo(context, const CheckoutDone());
+          },
+          name: 'Pay Now'),
     );
   }
 }

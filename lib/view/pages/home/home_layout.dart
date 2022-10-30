@@ -56,16 +56,12 @@ class _HomeLayoutState extends State<HomeLayout> {
                 }
               });
               },
-            selectedItemColor: mainColor,
-            showSelectedLabels: false,
-            elevation: 0.0,
-            selectedIconTheme: IconThemeData(color: mainColor,),
             items:  [
               BottomNavigationBarItem(
                 label: '',
                 icon:SvgPicture.asset('assets/Home.svg',
-                  color: _selectColor0==true? mainColor: Colors.white12,
-                )
+    color: _selectColor0==true? mainColor: Colors.white12,
+    )
               ),
               BottomNavigationBarItem(
                 label: '',

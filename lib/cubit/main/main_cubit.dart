@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odc_movie_theater/res/colors.dart';
 import 'package:odc_movie_theater/view/pages/search/search.dart';
 import '../../view/pages/home/home.dart';
 import '../../view/pages/tickets/my_tickets.dart';
@@ -34,14 +33,9 @@ class MainCubit extends Cubit<MainState> {
       const Search();
       selectColor2 = !selectColor2;
     }
-
-    currentNavBarItem = index;
-    emit(ChangeBottomNavBar());
-  }
-
   bool passwordVisible1 = false;
   bool passwordVisible2 = false;
-  void changeVisiblePassword1() {
+  void changeVisiblePassword1(){
     passwordVisible1 = !passwordVisible1;
     emit(ChangeVisiblePassword());
   }
@@ -49,5 +43,4 @@ class MainCubit extends Cubit<MainState> {
   void changeVisiblePassword2() {
     passwordVisible2 = !passwordVisible2;
     emit(ChangeVisiblePassword());
-  }
-}
+  }}}
