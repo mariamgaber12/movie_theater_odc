@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odc_movie_theater/view/pages/search/search.dart';
-import '../../view/pages/home/home.dart';
-import '../../view/pages/tickets/my_tickets.dart';
+import '../../../view/pages/home/home.dart';
+import '../../../view/pages/tickets/my_tickets.dart';
 import 'main_state.dart';
 
 class MainCubit extends Cubit<MainState> {
@@ -15,32 +15,19 @@ class MainCubit extends Cubit<MainState> {
     const Search(),
   ];
 
-  int currentNavBarItem = 0;
-  bool selectColor0=false;
-  bool selectColor1=false;
-  bool selectColor2=false;
 
+  int currentNavBarItem = 0;
   void changeCurrentNavBarItem(int index) {
+    currentNavBarItem = index;
     if (index == 0) {
       const Home();
-      selectColor0 = !selectColor0;
     }
     if (index == 1) {
       const MyTickets();
-      selectColor1 = !selectColor1;
     }
     if (index == 2) {
       const Search();
-      selectColor2 = !selectColor2;
     }
-  bool passwordVisible1 = false;
-  bool passwordVisible2 = false;
-  void changeVisiblePassword1(){
-    passwordVisible1 = !passwordVisible1;
-    emit(ChangeVisiblePassword());
+    emit(ChangeBottomNavBar());
   }
-
-  void changeVisiblePassword2() {
-    passwordVisible2 = !passwordVisible2;
-    emit(ChangeVisiblePassword());
-  }}}
+}

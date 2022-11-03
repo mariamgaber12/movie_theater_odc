@@ -2,10 +2,11 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_movie_theater/res/colors.dart';
-import 'package:odc_movie_theater/view/componentes/auth/components.dart';
 import 'package:odc_movie_theater/view/pages/home/home_layout.dart';
 import 'package:odc_movie_theater/view/pages/tickets/view_ticket.dart';
-import '../../componentes/checkout/checkout_com.dart';
+
+import '../../components/auth/components.dart';
+import '../../components/checkout/checkout_com.dart';
 
 class CheckoutDone extends StatelessWidget {
   const CheckoutDone({Key? key}) : super(key: key);

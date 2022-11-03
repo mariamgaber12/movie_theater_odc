@@ -1,14 +1,10 @@
-import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:odc_movie_theater/view_model/models/tickets/tickets.dart';
-import 'package:odc_movie_theater/view_model/network/end_points.dart';
-
-import '../../res/consts.dart';
-import '../../view_model/network/dio_helper.dart';
-
+import '../../../res/consts.dart';
+import '../../database/local/shared_preference/cache_keys.dart';
+import '../../database/network/dio_helper.dart';
+import '../../database/network/end_points.dart';
 part 'tickets_state.dart';
 
 class TicketsCubit extends Cubit<TicketsState> {
@@ -24,14 +20,14 @@ class TicketsCubit extends Cubit<TicketsState> {
     allTickets.clear();
     emit(GetAllTicketsLoadingState());
     DioHelper.getData(
-      url: ticketsEndPpoint,
-      token : accessToken,
+      url: ticketsEndPoint,
+      token: CacheKeysManger.getUserTokenFromCache(),
     ).then((value) {
       print(value.data);
-     /* for (var element in value.data) {
+      for (var element in value.data) {
         allTickets.add(Tickets.fromJson(element));
       }
-      print(allTickets[0].movieDate!.date);*/
+      print(allTickets[0].movieDate!.date);
       emit(GetAllTicketsSuccessfulState());
     }).catchError((error) {
       debugPrint(error.toString());
@@ -46,7 +42,7 @@ class TicketsCubit extends Cubit<TicketsState> {
     upcomingTickets.clear();
     emit(GetAllTicketsLoadingState());
     DioHelper.getData(
-      url: ticketsEndPpoint,
+      url: ticketsEndPoint,
       token: accessToken,
     ).then((value) {
       _getTodayTickets(value);

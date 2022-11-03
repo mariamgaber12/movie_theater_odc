@@ -1,32 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../res/colors.dart';
-import '../../../componentes/auth/components.dart';
-import '../../home/home_layout.dart';
+import '../../../../view_model/cubit/authentication/auth_cubit.dart';
+import '../../../../view_model/cubit/authentication/auth_states.dart';
+import '../../../components/auth/components.dart';
 import '../login/login.dart';
 
-class SignupScreen extends StatefulWidget {
+class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
-}
-
-class _SignupScreenState extends State<SignupScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passController = TextEditingController();
-  bool _passwordVisible = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _passwordVisible = false;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController userNameController = TextEditingController();
+    TextEditingController passController = TextEditingController();
+    TextEditingController confPassController = TextEditingController();
+
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
     return Scaffold(
         body: SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
@@ -55,10 +47,9 @@ class _SignupScreenState extends State<SignupScreen> {
             children: [
               Text(
                 'SignUp',
-                style: GoogleFonts.salsa(
+                style: textStyleSalsa.copyWith(
                   fontSize: 38,
                   fontWeight: FontWeight.w400,
-                  color: Colors.white,
                 ),
               )
             ],
@@ -66,44 +57,111 @@ class _SignupScreenState extends State<SignupScreen> {
           const SizedBox(
             height: 46,
           ),
-          defaultTaskFormField(
-              controller: nameController,
-              hint: 'Name',
-              type: TextInputType.name),
-          const SizedBox(
-            height: 25,
+          BlocConsumer<AuthenticationCubit, AuthenticationState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              var authCubit = AuthenticationCubit.get(context);
+              return Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    defaultTaskFormField(
+                        controller: userNameController,
+                        hint: 'User Name',
+                        validate: (String? value) {
+                          value = userNameController.text;
+                          if (value.isEmpty) {
+                            return ('Please Enter Name');
+                          } else {
+                            return null;
+                          }
+                        },
+                        type: TextInputType.name),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    defaultTaskFormField(
+                        validate: (String? value) {
+                          value = emailController.text;
+                          if (value.isEmpty) {
+                            return ('Please Enter Email');
+                          } else {
+                            return null;
+                          }
+                        },
+                        controller: emailController,
+                        hint: 'E-Mail',
+                        type: TextInputType.emailAddress),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    defaultTaskFormField(
+                        controller: passController,
+                        hint: 'Password',
+                        validate: (String? value) {
+                          value = passController.text;
+                          if (value.isEmpty) {
+                            return ('Please Enter Password');
+                          } else {
+                            return null;
+                          }
+                        },
+                        obscure: !authCubit.passwordVisibleS1,
+                        suffixIcon: IconButton(
+                          icon: Icon(authCubit.passwordVisibleS1 == false
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            authCubit.changePassVisibilitySignup();
+                          },
+                          color: thirdColor,
+                        ),
+                        type: TextInputType.visiblePassword),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    defaultTaskFormField(
+                        validate: (String? value) {
+                          value = confPassController.text;
+                          if (value.isEmpty) {
+                            return ('Please Enter Confirm Password');
+                          } else {
+                            return null;
+                          }
+                        },
+                        controller: confPassController,
+                        hint: 'Confirm Password',
+                        obscure: !authCubit.passwordVisibleS2,
+                        suffixIcon: IconButton(
+                          icon: Icon(authCubit.passwordVisibleS2 == false
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            authCubit.changePassVisibilityConfSignup();
+                          },
+                          color: thirdColor,
+                        ),
+                        type: TextInputType.visiblePassword),
+                    const SizedBox(
+                      height: 44,
+                    ),
+                    buildButton(
+                        name: 'Signup',
+                        onPress: () {
+                          if (!formKey.currentState!.validate()) {
+                            return;
+                          }
+                          authCubit.signup(
+                              email: emailController.text,
+                              userName: userNameController.text,
+                              password: passController.text,
+                              context: context);
+                        })
+                  ],
+                ),
+              );
+            },
           ),
-          defaultTaskFormField(
-              controller: emailController,
-              hint: 'E-Mail',
-              type: TextInputType.emailAddress),
-          const SizedBox(
-            height: 25,
-          ),
-          defaultTaskFormField(
-              controller: passController,
-              hint: 'Password',
-              obscure: !_passwordVisible,
-              suffixIcon: IconButton(
-                icon: Icon(
-                    _passwordVisible ? Icons.visibility : Icons.visibility_off),
-                onPressed: () {
-                  setState(() {
-                    _passwordVisible = !_passwordVisible;
-                  });
-                },
-                color: mainColor,
-              ),
-              type: TextInputType.visiblePassword),
-          const SizedBox(
-            height: 44,
-          ),
-          buildButton(
-              name: 'Signup',
-              onPress: () {
-                navigateTo(context, const HomeLayout());
-                //  authCubit.login(emailController.text, passController.text, context);
-              }),
           const SizedBox(
             height: 34,
           ),
@@ -112,10 +170,8 @@ class _SignupScreenState extends State<SignupScreen> {
             children: [
               Text(
                 "Already have an account?",
-                style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600),
+                style: textStyleRoboto.copyWith(
+                    fontSize: 15, fontWeight: FontWeight.w600),
               ),
               TextButton(
                 onPressed: () {
@@ -123,9 +179,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 },
                 child: Text(
                   "Login",
-                  style: GoogleFonts.roboto(
+                  style: textStyleRoboto.copyWith(
                       color: mainColor,
-                      fontSize: 13,
+                      fontSize: 15,
                       fontWeight: FontWeight.w600),
                 ),
               ),
@@ -140,7 +196,7 @@ class _SignupScreenState extends State<SignupScreen> {
               myLine(width: 120, left: 30, right: 9),
               Text(
                 'or connect with',
-                style: GoogleFonts.roboto(
+                style: textStyleRoboto.copyWith(
                     color: Colors.white60,
                     fontSize: 12,
                     fontWeight: FontWeight.w400),
@@ -148,23 +204,40 @@ class _SignupScreenState extends State<SignupScreen> {
               myLine(width: 120, left: 9, right: 30),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset('assets/twitter.svg'),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               SvgPicture.asset('assets/facebook.svg'),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               SvgPicture.asset('assets/google.svg'),
             ],
           ),
+          const SizedBox(
+            height: 44.1,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Enter as a guest',
+                style: textStyleRoboto.copyWith(
+                  fontSize: 15,
+                  decoration: TextDecoration.underline,
+                  fontWeight: FontWeight.w600,
+                  color: mainColor,
+                ),
+              )
+            ],
+          )
         ],
       )),
     ));

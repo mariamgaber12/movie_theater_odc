@@ -17,10 +17,11 @@ Widget buildButton({required name, required onPress}) {
         child: Center(
           child: Text(
             name,
-            style:  GoogleFonts.roboto(
+            style:
+            textStyleRoboto.copyWith(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: secondColor,
             ),
           ),
         ),
@@ -29,35 +30,6 @@ Widget buildButton({required name, required onPress}) {
   );
 }
 
-Widget buildOutlineButton({required name, required onPress}) {
-  return Padding(
-    padding: const EdgeInsets.only(top: 20, left: 45, right: 45,bottom: 15),
-    child: GestureDetector(
-      onTap: onPress,
-      child: Container(
-        width: double.infinity,
-        height: 45,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(width: 2.2,color: mainColor),
-            color: Colors.white),
-        child: Center(
-          child: Text(
-            name,
-            style: textstyle.copyWith(color: mainColor),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-Widget myDriver() => Padding(
-  padding: const EdgeInsets.only(left: 20, right: 25,),
-  child: Divider(
-    color: Colors.grey[400]!,
-  ),
-);
 
 void navigateTo(context, widget) => Navigator.push(
   context,
@@ -66,10 +38,12 @@ void navigateTo(context, widget) => Navigator.push(
   ),
 );
 
-TextStyle textstyle = GoogleFonts.salsa(
-  fontSize: 38,
-  fontWeight: FontWeight.w400,
-  color: Colors.white,
+TextStyle textStyleSalsa = GoogleFonts.salsa(
+  color: secondColor,
+);
+
+TextStyle textStyleRoboto = GoogleFonts.roboto(
+  color: secondColor,
 );
 
 Widget myLine(
@@ -83,13 +57,13 @@ Widget myLine(
       child: Container(
         height: 1,
         width: width,
-        color: Colors.grey,
+        color: Colors.white60,
       ),
     );
 
 Widget defaultTaskFormField({
   required TextEditingController controller,
-  //required validate,
+  required validate,
   required String hint,
   required type,
   bool obscure=false,
@@ -97,7 +71,7 @@ Widget defaultTaskFormField({
 }) =>
     Padding(
       padding: const EdgeInsets.only(top: 10, left: 45, right: 45),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: 66,
         child: TextFormField(
@@ -106,30 +80,26 @@ Widget defaultTaskFormField({
           obscureText: obscure,
           keyboardType: type,
           textInputAction: TextInputAction.next,
-          //validator: validate,
-          style:  GoogleFonts.salsa(
+          validator: validate,
+          style:  textStyleSalsa.copyWith(
             fontWeight: FontWeight.w600,
-            color: Colors.white54,
+            color: fourthColor,
           ),
           decoration: InputDecoration(
             hintText: hint,
             suffixIcon: suffixIcon,
-            hintStyle:
-            GoogleFonts.salsa(
+            hintStyle: textStyleSalsa.copyWith(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: Colors.white54,
-            ),
+              color: fourthColor,),
             filled: true,
-            fillColor: Colors.white24,
+            fillColor: thirdColor,
             enabledBorder: OutlineInputBorder(
-               // borderSide: BorderSide(color: Colors.grey[300]!),
                 borderRadius: BorderRadius.circular(15)),
             focusedBorder: OutlineInputBorder(
                 borderSide:   BorderSide(color: mainColor),
                 borderRadius: BorderRadius.circular(15)),
             border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey[300]!),
                 borderRadius: BorderRadius.circular(15)),
           ),
         ),

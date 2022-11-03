@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../res/colors.dart';
 
 Widget buildSearchFormField({
@@ -44,3 +43,28 @@ Widget buildSearchFormField({
         ),
       ),
     );
+
+
+Widget buildSearchCard({
+  required image,
+  required title,
+}){
+  return Padding(
+    padding: const EdgeInsets.only(top: 20,left: 23,right: 23),
+    child: Container(
+      padding: EdgeInsets.all(5),
+      height: 80,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white10,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Center(
+        child: ListTile(
+          leading:Image.asset(image,width: 50,height: 80,),
+          title:Text(title,style: TextStyle(color: Colors.white),),
+        ),
+      )
+    ),
+  );
+}

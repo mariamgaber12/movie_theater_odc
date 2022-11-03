@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:odc_movie_theater/view/componentes/tickets/my_tickets.dart';
+
+import '../../components/tickets/my_tickets.dart';
 
 class ViewTicket extends StatelessWidget {
   const ViewTicket({Key? key}) : super(key: key);

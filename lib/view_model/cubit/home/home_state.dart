@@ -5,6 +5,9 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
+class ChangeHomeIndicator extends HomeState {}
+
+
 class GetAllMoviesLoadingState extends HomeState {}
 class GetAllMoviesSuccessfulState extends HomeState {}
 class GetAllMoviesErrorState extends HomeState {}

@@ -3,19 +3,13 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_movie_theater/res/colors.dart';
-import 'package:odc_movie_theater/view/componentes/auth/components.dart';
-import 'package:odc_movie_theater/view/componentes/checkout/checkout_com.dart';
 import 'package:odc_movie_theater/view/pages/checkout/checkout_pay.dart';
 
-class Reservation extends StatefulWidget {
+import '../../components/auth/components.dart';
+import '../../components/checkout/checkout_com.dart';
+
+class Reservation extends StatelessWidget {
   const Reservation({Key? key}) : super(key: key);
-
-  @override
-  State<Reservation> createState() => _ReservationState();
-}
-
-class _ReservationState extends State<Reservation> {
-
 
   @override
   Widget build(BuildContext context) {

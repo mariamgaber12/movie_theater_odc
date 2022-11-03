@@ -4,27 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_movie_theater/res/colors.dart';
-import '../../../cubit/home/home_cubit.dart';
-import '../../componentes/home/home_com.dart';
+import 'package:odc_movie_theater/view/pages/checkout/movie_details.dart';
+import '../../../view_model/cubit/home/home_cubit.dart';
+import '../../components/auth/components.dart';
+import '../../components/home/home_com.dart';
+import '../../components/home/home_drawer.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  int activeIndex = 0;
-
-  final dates = [
-    'April 1 2023',
-    'May 2 2023',
-    'June 6 2023',
-  ];
-
-  @override
   Widget build(BuildContext context) {
+    final dates = [
+      'April 1 2023',
+      'May 2 2023',
+      'June 6 2023',
+      'April 1 2023',
+      'May 2 2023',
+      'June 6 2023',
+      'April 1 2023',
+      'May 2 2023',
+      'June 6 2023',
+      'April 1 2023',
+      'May 2 2023',
+      'June 6 2023',
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -100,11 +104,12 @@ class _HomeState extends State<Home> {
                               curveScale: -20,
                               middleItemScaleRatio: 1.3,
                               viewPortSize: .001,
-                              onChangeStart: (index, reason) => setState(
-                                () => activeIndex = index,
-                              ),
+                              onChangeStart: (index, reason) => movieCubit.changeActiveIndicator(index),
                         itemBuilder: (_, index) {
                                 return buildCardMovie(
+                                    onTap: (){
+                                      navigateTo(context,  MovieDetails(movieId: index,));
+                                    },
                                     image: movieCubit.movies[index].imageUrl,
                                     index: index,
                                     name: movieCubit.movies[index].name);
@@ -114,7 +119,7 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         height: 40,
                       ),
-                      buildIndicator(activeIndex: activeIndex),
+                      buildIndicator(activeIndex: movieCubit.activeIndex),
                     ],
                   ),
                   const SizedBox(
@@ -159,7 +164,6 @@ class _HomeState extends State<Home> {
                                 options: CarouselOptions(
                                   height: 200,
                                   viewportFraction: .78,
-                                  //onPageChanged: (index, reason) => setState(() => activeIndex1 = index,),
                                 ),
                               ),
                             );
@@ -171,7 +175,7 @@ class _HomeState extends State<Home> {
           },
         ),
       ),
-      drawer: buildDrawerScreen(),
+      drawer: const DrawerScreen(),
     );
   }
 }

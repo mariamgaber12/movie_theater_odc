@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 
-import '../auth/components.dart';
-
 Widget buildCheckoutButton({required name, required onPress}) {
   return Padding(
     padding: const EdgeInsets.only(top: 49, left: 54, right: 54, bottom: 48),

@@ -7,8 +7,10 @@ const googleEndPoint = 'auth/google';
 
 const moviesEndPoint = 'movies';
 const comingMoviesEndPoint = 'movies/upcoming';
+const castMoviesEndPoint = 'movies/{id}/casts';
 
-const ticketsEndPpoint = "tickets";
+
+const ticketsEndPoint = "tickets";
 
 
 

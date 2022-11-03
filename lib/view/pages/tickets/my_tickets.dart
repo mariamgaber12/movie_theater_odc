@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:odc_movie_theater/cubit/tickets/tickets_cubit.dart';
-import 'package:odc_movie_theater/res/colors.dart';
-import 'package:odc_movie_theater/view/componentes/auth/components.dart';
-import 'package:odc_movie_theater/view/componentes/tickets/my_tickets.dart';
 import 'package:odc_movie_theater/view/pages/tickets/view_ticket.dart';
-import '../../componentes/home/home_com.dart';
+import '../../../view_model/cubit/tickets/tickets_cubit.dart';
+import '../../components/auth/components.dart';
+import '../../components/home/home_drawer.dart';
+import '../../components/tickets/my_tickets.dart';
 
 class MyTickets extends StatelessWidget {
   const MyTickets({Key? key}) : super(key: key);
@@ -54,17 +53,16 @@ class MyTickets extends StatelessWidget {
                       ],
                     ),
                   ),
-                  ticketCubit.allTickets.isEmpty?
-                  CircularProgressIndicator(color: mainColor,)
-                  :buildTickets(
-                    image: ticketCubit.allTickets[0].movieDate!.movie!.imageUrl!,
-                    name: ticketCubit.allTickets[0].movieDate!.movie!.name!,
-                    position: ticketCubit.allTickets[0].movieDate!.reservedSeats!,
-                    date: ticketCubit.allTickets[0].movieDate!.date!,
-                    onPressTicket: () {
-                      navigateTo(context, const ViewTicket());
-                    },
-                  ),
+
+                buildTickets(
+                  image: 'assets/card.png',
+                  name: 'Spider Man No Way',
+                  position: '4 Seats',
+                  date: "9:00pm | 20 February",
+                  onPressTicket: () {
+                    navigateTo(context, const ViewTicket());
+                  },
+                ),
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 29,
@@ -98,24 +96,7 @@ class MyTickets extends StatelessWidget {
                         navigateTo(context, const ViewTicket());
                       },
                     ),
-                    buildTickets(
-                      image: 'assets/card.png',
-                      name: 'Spider Man No Way',
-                      position: '4 Seats',
-                      date: "9:00pm | 20 February",
-                      onPressTicket: () {
-                        navigateTo(context, const ViewTicket());
-                      },
-                    ),
-                    buildTickets(
-                      image: 'assets/card.png',
-                      name: 'Spider Man No Way',
-                      position: '4 Seats',
-                      date: "9:00pm | 20 February",
-                      onPressTicket: () {
-                        navigateTo(context, const ViewTicket());
-                      },
-                    ),
+
                   ]),
                 ],
               ),
@@ -123,7 +104,7 @@ class MyTickets extends StatelessWidget {
           },
         ),
       ),
-      drawer: buildDrawerScreen(),
+      drawer: const DrawerScreen(),
     );
   }
 }

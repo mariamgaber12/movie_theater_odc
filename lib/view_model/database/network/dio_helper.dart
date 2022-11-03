@@ -13,8 +13,7 @@ class DioHelper {
       BaseOptions(
         //Here the URL of API.
         baseUrl: baseUrl,
-
-        //   receiveDataWhenStatusError: true,
+        //receiveDataWhenStatusError: true,
         //Here we Put The Headers Needed in The API.
         headers: {
           'Accept': 'application/json',
@@ -24,7 +23,8 @@ class DioHelper {
     );
   }
 
-  //This Function to call API and get Some Data based on url(End Points) and Headers needed in API to get the Specific Data.
+  //This Function to call API and get Some Data based on url(End Points) and Headers needed in
+  // API to get the Specific Data.
   static Future<Response> getData({
     required String url,
     Map<String, dynamic>? queryParameters,
