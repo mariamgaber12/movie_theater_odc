@@ -24,7 +24,7 @@ Widget buildCardMovie(
       Container(
         height: 210,
         color: Colors.transparent,
-        child: Image.asset(
+        child: Image.network(
           image,
           fit: BoxFit.cover,
           width: 153.24,

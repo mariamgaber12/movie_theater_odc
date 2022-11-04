@@ -90,7 +90,7 @@ class Home extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      movieCubit.movies.isEmpty
+                      movieCubit.comingMovies.isEmpty
                           ? CircularProgressIndicator(
                               color: mainColor,
                             )
@@ -100,17 +100,23 @@ class Home extends StatelessWidget {
                               curveScale: -20,
                               middleItemScaleRatio: 1.3,
                               viewPortSize: .001,
-                              onChangeStart: (index, reason) => movieCubit.changeActiveIndicator(index),
-                        itemBuilder: (_, index) {
+                              onChangeStart: (index, reason) =>
+                                  movieCubit.changeActiveIndicator(index),
+                              itemBuilder: (_, index) {
                                 return buildCardMovie(
-                                    onTap: (){
-                                      navigateTo(context,  MovieDetails(movieId: index,));
+                                    onTap: () {
+                                      navigateTo(
+                                          context,
+                                          MovieDetails(
+                                            movieId: index,
+                                          ));
                                     },
-                                    image: movieCubit.movies[index].imageUrl,
+                                    image:
+                                        movieCubit.comingMovies[index].imageUrl,
                                     index: index,
-                                    name: movieCubit.movies[index].name);
+                                    name: movieCubit.comingMovies[index].name);
                               },
-                              itemCount: movieCubit.movies.length,
+                              itemCount: movieCubit.comingMovies.length,
                             ),
                       const SizedBox(
                         height: 40,
