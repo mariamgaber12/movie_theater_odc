@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 import 'package:odc_movie_theater/view/pages/tickets/my_tickets.dart';
-import '../../../res/consts.dart';
 import '../../../view/pages/home/home.dart';
 import '../../../view/pages/home/home_layout.dart';
 import '../../../view/pages/search/search.dart';

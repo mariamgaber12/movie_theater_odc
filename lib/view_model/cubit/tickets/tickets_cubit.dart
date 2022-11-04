@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odc_movie_theater/view_model/models/tickets/tickets.dart';
-import '../../../res/consts.dart';
 import '../../database/local/shared_preference/cache_keys.dart';
 import '../../database/network/dio_helper.dart';
 import '../../database/network/end_points.dart';

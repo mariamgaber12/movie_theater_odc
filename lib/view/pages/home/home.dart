@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:curved_carousel/curved_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 import 'package:odc_movie_theater/view/pages/checkout/movie_details.dart';
 import '../../../view_model/cubit/home/home_cubit.dart';
@@ -31,7 +30,7 @@ class Home extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: firstColor,
         title: Image.asset(
           'assets/img.png',
           width: 65,
@@ -52,7 +51,6 @@ class Home extends StatelessWidget {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                     image:
-                    //NetworkImage(movieCubit.movies[0].imageUrl!),
                     AssetImage('assets/card.png')
                     ,fit: BoxFit.cover,
                     opacity: .35),
@@ -67,10 +65,8 @@ class Home extends StatelessWidget {
                     children: [
                       Text(
                         'Now Playing',
-                        style: GoogleFonts.salsa(
-                            color: Colors.white,
-                            fontSize: 33,
-                            fontWeight: FontWeight.w400),
+                        style: textStyleSalsa.copyWith(
+                            fontSize: 33, fontWeight: FontWeight.w400),
                       )
                     ],
                   ),
@@ -82,7 +78,7 @@ class Home extends StatelessWidget {
                     children: [
                       Text(
                         'Book your ticket now',
-                        style: GoogleFonts.salsa(
+                        style: textStyleSalsa.copyWith(
                             color: mainColor,
                             fontSize: 10,
                             fontWeight: FontWeight.w400),
@@ -129,10 +125,9 @@ class Home extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 29, bottom: 2),
                     child: Text(
                       'Coming Soon',
-                      style: GoogleFonts.roboto(
+                      style: textStyleRoboto.copyWith(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
-                        color: Colors.white,
                       ),
                     ),
                   ),

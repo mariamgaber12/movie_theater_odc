@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:odc_movie_theater/view/components/auth/components.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../res/colors.dart';
 
-Widget buildDrawerList ({required icon,required title}) {
+Widget buildDrawerList({required icon, required title}) {
   return ListTile(
     leading: Icon(
       icon,
+      size: 32.5,
       color: mainColor,
     ),
-    title: Text(
-      '$title',
-      style: GoogleFonts.roboto(
-          color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
-    ),
+    title: Text('$title',
+        style: textStyleRoboto.copyWith(
+            fontSize: 14, fontWeight: FontWeight.w400)),
   );
 }
 
-Widget buildCardMovie({required image, required index, required name,required onTap}) {
+Widget buildCardMovie(
+    {required image, required index, required name, required onTap}) {
   return GestureDetector(
     onTap: onTap,
     child: Stack(children: [
       Container(
         height: 210,
         color: Colors.transparent,
-        child: Image.network(
+        child: Image.asset(
           image,
           fit: BoxFit.cover,
           width: 153.24,
@@ -39,14 +39,14 @@ Widget buildCardMovie({required image, required index, required name,required on
             padding: const EdgeInsets.all(7),
             width: 150,
             height: 70,
-            child: Text(
-              '$name',
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.clip,
-              softWrap: false,
-              style: GoogleFonts.roboto(
-                  fontSize: 14, fontWeight: FontWeight.w700, color: Colors.white),
-            ),
+            child: Text('$name',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.clip,
+                softWrap: false,
+                style: textStyleRoboto.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                )),
           ),
         ),
       )
@@ -71,14 +71,10 @@ Widget buildIndicator({required activeIndex}) {
   );
 }
 
-Widget buildComingMovie({
-  required image,
-  required index,
-  required name,
-  required date}) {
-  return Stack(
-      children: [
-        Container(
+Widget buildComingMovie(
+    {required image, required index, required name, required date}) {
+  return Stack(children: [
+    Container(
       width: 281,
       height: 179,
       decoration: BoxDecoration(
@@ -97,39 +93,39 @@ Widget buildComingMovie({
         height: 162,
       ),
     ),
-        Positioned(
-          top: 66,
-          left: 118,
-          child: CircleAvatar(
-            backgroundColor: Colors.black26,
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.play_arrow_rounded,
-                color: Colors.white,
-              ),
-            ),
+    Positioned(
+      top: 66,
+      left: 118,
+      child: CircleAvatar(
+        backgroundColor: Colors.black26,
+        child: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.play_arrow_rounded,
+            color: secondColor,
           ),
         ),
-        Positioned(
-          top: 117,
-          left: 12,
-          child: Column(
-            children: [
-              Text(
-                '$name',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.roboto(
-                    fontSize: 12, fontWeight: FontWeight.w700, color: Colors.white),
-              ),
-              Text(
-                '$date',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.roboto(
-                    fontSize: 11, fontWeight: FontWeight.w700, color: Colors.white),
-              ),
-            ],
-          ),
-        )
+      ),
+    ),
+    Positioned(
+      top: 117,
+      left: 12,
+      child: Column(
+        children: [
+          Text('$name',
+              textAlign: TextAlign.center,
+              style: textStyleRoboto.copyWith(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+              )),
+          Text('$date',
+              textAlign: TextAlign.center,
+              style: textStyleRoboto.copyWith(
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+              )),
+        ],
+      ),
+    )
   ]);
 }

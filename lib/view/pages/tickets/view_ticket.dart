@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:odc_movie_theater/res/colors.dart';
+import 'package:odc_movie_theater/view/components/auth/components.dart';
 
 import '../../components/tickets/my_tickets.dart';
 
@@ -10,11 +11,13 @@ class ViewTicket extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: firstColor,
         title: Text(
           'View Ticket',
-          style: GoogleFonts.roboto(
-              fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
+          style: textStyleRoboto.copyWith(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         centerTitle: true,
       ),

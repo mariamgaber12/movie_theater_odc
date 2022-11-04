@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 
+import '../auth/components.dart';
+
 Widget buildCheckoutButton({required name, required onPress}) {
   return Padding(
     padding: const EdgeInsets.only(top: 49, left: 54, right: 54, bottom: 48),
@@ -20,7 +22,7 @@ Widget buildCheckoutButton({required name, required onPress}) {
             style: GoogleFonts.roboto(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: secondColor,
             ),
           ),
         ),
@@ -50,7 +52,7 @@ Widget buildCheckOutlineButton({required name, required onPress}) {
             style: GoogleFonts.roboto(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: secondColor,
             ),
           ),
         ),
@@ -165,10 +167,9 @@ Widget buildBottomNav({required onTap, required name}) {
         child: TextButton(
           onPressed: onTap,
           child: Text(
-            '$name',
-            style: GoogleFonts.roboto(
-                fontSize: 24, fontWeight: FontWeight.w700, color: Colors.white),
-          ),
+              '$name',
+              style: textStyleRoboto.copyWith(
+                  fontSize: 24, fontWeight: FontWeight.w700)),
         ),
       ),
     ),
@@ -186,10 +187,11 @@ Widget buildMovieCast() {
           height: 100,
         ),
         Text(
-          'Tom Holland',
-          style: GoogleFonts.roboto(
-              fontSize: 11, fontWeight: FontWeight.w400, color: Colors.white),
-        ),
+            'Tom Holland',
+            style: textStyleRoboto.copyWith(
+              fontSize: 11,
+              fontWeight: FontWeight.w400,
+            )),
       ],
     ),
   );
@@ -213,20 +215,18 @@ Widget buildDateCard({required day, required onTap, required color}) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '$day',
-                style: GoogleFonts.roboto(
+                  '$day',
+                  style: textStyleRoboto.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: Colors.white),
-              ),
+                  )),
               //SizedBox(height: 8,),
               Text(
-                'February',
-                style: GoogleFonts.roboto(
+                  'February',
+                  style: textStyleRoboto.copyWith(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
-                    color: Colors.white),
-              ),
+                  )),
             ],
           ),
         ),
@@ -237,10 +237,11 @@ Widget buildDateCard({required day, required onTap, required color}) {
 
 Widget buildMovieTime({required time}) {
   return Text(
-    '$time',
-    style: GoogleFonts.roboto(
-        fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
-  );
+      '$time',
+      style: textStyleRoboto.copyWith(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+      ));
 }
 
 Widget buildSeatIcon({required seatIcon,required onPress,required color}){

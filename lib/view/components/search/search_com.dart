@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:odc_movie_theater/view/components/auth/components.dart';
 import '../../../res/colors.dart';
 
 Widget buildSearchFormField({
@@ -18,21 +18,21 @@ Widget buildSearchFormField({
           autofocus: false,
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.search,
-          style: GoogleFonts.salsa(
+          style: textStyleSalsa.copyWith(
             fontWeight: FontWeight.w600,
             color: Colors.white54,
           ),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: GoogleFonts.salsa(
+            hintStyle: textStyleSalsa.copyWith(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               color: Colors.white54,
             ),
             filled: true,
             fillColor: Colors.white24,
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(41)),
+            enabledBorder:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(41)),
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: mainColor),
                 borderRadius: BorderRadius.circular(41)),

@@ -18,11 +18,13 @@ class CheckoutPay extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: firstColor,
         title: Text(
           'Checkout',
-          style: GoogleFonts.roboto(
-              fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
+          style: textStyleRoboto.copyWith(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         centerTitle: true,
       ),
@@ -41,10 +43,10 @@ class CheckoutPay extends StatelessWidget {
             children: [
               Text(
                 'Spiderman No Way Home',
-                style: GoogleFonts.roboto(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white),
+                style: textStyleRoboto.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
@@ -56,10 +58,10 @@ class CheckoutPay extends StatelessWidget {
             children: [
               Text(
                 'Tomorrow | 20 Feb | 9:00pm',
-                style: GoogleFonts.roboto(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white),
+                style: textStyleRoboto.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ),
@@ -84,26 +86,26 @@ class CheckoutPay extends StatelessWidget {
                         children: [
                           Text(
                             'NP Order',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           const SizedBox(
                             width: 70,
                           ),
                           Text(
                             '7283603745',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    const Divider(
-                      color: Colors.black,
+                    Divider(
+                      color: firstColor,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
@@ -112,26 +114,26 @@ class CheckoutPay extends StatelessWidget {
                         children: [
                           Text(
                             'Info',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           const SizedBox(
                             width: 98,
                           ),
                           Text(
                             'Spiderman No Way Home',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    const Divider(
-                      color: Colors.black,
+                    Divider(
+                      color: firstColor,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
@@ -140,26 +142,26 @@ class CheckoutPay extends StatelessWidget {
                         children: [
                           Text(
                             'Session',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           const SizedBox(
                             width: 77,
                           ),
                           Text(
                             '9:00pm , 20 Feb',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    const Divider(
-                      color: Colors.black,
+                    Divider(
+                      color: firstColor,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
@@ -168,26 +170,26 @@ class CheckoutPay extends StatelessWidget {
                         children: [
                           Text(
                             'Seats',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           const SizedBox(
                             width: 89,
                           ),
                           Text(
                             'G5,G6,G7,G8',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    const Divider(
-                      color: Colors.black,
+                    Divider(
+                      color: firstColor,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 17, top: 14.7),
@@ -195,20 +197,20 @@ class CheckoutPay extends StatelessWidget {
                         children: [
                           Text(
                             'Total',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           const SizedBox(
                             width: 93,
                           ),
                           Text(
                             '150 EGP',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ],
                       ),
@@ -220,10 +222,10 @@ class CheckoutPay extends StatelessWidget {
             padding: const EdgeInsets.only(left: 24, bottom: 20),
             child: Text(
               'Payment Info',
-              style: GoogleFonts.roboto(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white),
+              style: textStyleRoboto.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
           Padding(
@@ -258,11 +260,11 @@ class CheckoutPay extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                                Text('cvv',
-                                  style: GoogleFonts.roboto(
-                                    fontSize: 8,
-                                    color: Colors.white70,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                 style: textStyleRoboto.copyWith(
+                                fontSize: 8,
+                                color: Colors.white70,
+                                fontWeight: FontWeight.w400,
+                              ),
                                   ),
 
                           ],
@@ -311,9 +313,9 @@ class CheckoutPay extends StatelessWidget {
                   child: Container(
                     height: 226,
                     width: 321,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white24,
+                      color: thirdColor,
                     ),
                   ),
                 ),
@@ -324,9 +326,9 @@ class CheckoutPay extends StatelessWidget {
                   child: Container(
                     height: 226,
                     width: 321,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white24,
+                      color: thirdColor,
                     ),
                   ),
                 ),

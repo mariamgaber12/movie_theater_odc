@@ -18,16 +18,22 @@ class HomeLayout extends StatelessWidget {
         return Scaffold(
           body: homeCubit.homeScreens[homeCubit.currentNavBarItem],
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Colors.black,
+            backgroundColor: firstColor,
             currentIndex: homeCubit.currentNavBarItem,
             onTap: (index) {
               homeCubit.changeCurrentNavBarItem(index);
-              },
-            items:  [
+            },
+            items: [
               BottomNavigationBarItem(
                 label: '',
-                activeIcon: SvgPicture.asset('assets/Home.svg',color: mainColor,),
-                icon:SvgPicture.asset('assets/Home.svg', color: Colors.white12,),
+                activeIcon: SvgPicture.asset(
+                  'assets/Home.svg',
+                  color: mainColor,
+                ),
+                icon: SvgPicture.asset(
+                  'assets/Home.svg',
+                  color: Colors.white12,
+                ),
               ),
               BottomNavigationBarItem(
                 label: '',

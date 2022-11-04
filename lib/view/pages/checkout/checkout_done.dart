@@ -1,10 +1,8 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 import 'package:odc_movie_theater/view/pages/home/home_layout.dart';
 import 'package:odc_movie_theater/view/pages/tickets/view_ticket.dart';
-
 import '../../components/auth/components.dart';
 import '../../components/checkout/checkout_com.dart';
 
@@ -15,11 +13,13 @@ class CheckoutDone extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: firstColor,
         title: Text(
           'Checkout',
-          style: GoogleFonts.roboto(
-              fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
+          style: textStyleRoboto.copyWith(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         centerTitle: true,
       ),
@@ -34,16 +34,18 @@ class CheckoutDone extends StatelessWidget {
             padding: const EdgeInsets.only(top: 74, bottom: 24),
             child: Text(
               'Congrats',
-              style: GoogleFonts.salsa(
-                  fontSize: 42,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white),
+              style: textStyleSalsa.copyWith(
+                fontSize: 42,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
           Text(
             'Reservation Completed',
-            style: GoogleFonts.salsa(
-                fontSize: 19, fontWeight: FontWeight.w400, color: Colors.white),
+            style: textStyleSalsa.copyWith(
+              fontSize: 19,
+              fontWeight: FontWeight.w400,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(

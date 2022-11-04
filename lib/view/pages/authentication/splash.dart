@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:odc_movie_theater/res/colors.dart';
 import 'login/login.dart';
 
 class Splash extends StatefulWidget {
@@ -15,12 +15,14 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: AnimatedSplashScreen(
-        backgroundColor: Colors.black,
+        backgroundColor: firstColor,
         duration: 500,
         //splashTransition: SplashTransition.fadeTransition,
         nextScreen: const LoginScreen(),
-        splash:Image.asset('assets/img.png',
-          width: 250,height: 150,
+        splash: Image.asset(
+          'assets/img.png',
+          width: 250,
+          height: 150,
         ),
       ),
     );

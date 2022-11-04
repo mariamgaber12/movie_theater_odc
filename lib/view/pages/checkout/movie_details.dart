@@ -1,11 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 import 'package:odc_movie_theater/view/pages/checkout/reservation.dart';
 import 'package:odc_movie_theater/view_model/cubit/movie_cast/movie_cast_cubit.dart';
-
 import '../../components/auth/components.dart';
 import '../../components/checkout/checkout_com.dart';
 
@@ -69,22 +67,27 @@ class _MovieDetailsState extends State<MovieDetails> {
                 Stack(
                   children: [
                     Image.asset('assets/coming.png'),
-                    const Positioned(
+                     Positioned(
                         top: 90,
                         right: 140,
                         left: 140,
                         child: Icon(
                           Icons.play_arrow_rounded,
                           size: 55,
-                          color: Colors.white,
+                          color: secondColor,
                         )),
-                    const Positioned(
+                    Positioned(
                         top: 20,
                         left: 10,
-                        child: Icon(
-                          Icons.arrow_back,
-                          size: 30,
-                          color: Colors.white,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            size: 30,
+                            color: secondColor,
+                          ),
                         )),
                   ],
                 ),
@@ -96,10 +99,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                     children: [
                       Text(
                         'Spiderman No Way Home',
-                        style: GoogleFonts.roboto(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
+                        style: textStyleRoboto.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ],
                   ),
@@ -113,50 +116,50 @@ class _MovieDetailsState extends State<MovieDetails> {
                     children: [
                       Text(
                         'PG-13',
-                        style: GoogleFonts.roboto(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
+                        style: textStyleRoboto.copyWith(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                       const SizedBox(
                         width: 8,
                       ),
                       Text(
                         '.',
-                        style: GoogleFonts.roboto(
+                        style: textStyleRoboto.copyWith(
                             fontSize: 40,
                             fontWeight: FontWeight.w900,
-                            color: Colors.red),
+                            color: mainColor),
                       ),
                       const SizedBox(
                         width: 8,
                       ),
                       Text(
                         '2h 28m',
-                        style: GoogleFonts.roboto(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
+                        style: textStyleRoboto.copyWith(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                       const SizedBox(
                         width: 8,
                       ),
                       Text(
                         '.',
-                        style: GoogleFonts.roboto(
+                        style: textStyleRoboto.copyWith(
                             fontSize: 40,
                             fontWeight: FontWeight.w900,
-                            color: Colors.red),
+                            color: mainColor),
                       ),
                       const SizedBox(
                         width: 8,
                       ),
                       Text(
                         'Action | Adventure',
-                        style: GoogleFonts.roboto(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
+                        style: textStyleRoboto.copyWith(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ],
                   ),
@@ -194,10 +197,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                 ),
                 Text(
                   '8.7',
-                  style: GoogleFonts.roboto(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white),
+                  style: textStyleRoboto.copyWith(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),
@@ -211,10 +214,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                 ),
                 Text(
                   'Synopsis',
-                  style: GoogleFonts.roboto(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
+                  style: textStyleRoboto.copyWith(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),
@@ -236,10 +239,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                   maxLines: 5,
                   overflow: TextOverflow.visible,
                   textAlign: TextAlign.justify,
-                  style: GoogleFonts.roboto(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white),
+                  style: textStyleRoboto.copyWith(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),
@@ -253,10 +256,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                 ),
                 Text(
                   'Cast & Crew',
-                  style: GoogleFonts.roboto(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
+                  style: textStyleRoboto.copyWith(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 const Spacer(),
                 TextButton(
@@ -265,10 +268,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                       children: [
                         Text(
                           'See All',
-                          style: GoogleFonts.roboto(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
+                          style: textStyleRoboto.copyWith(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         Icon(
                           Icons.double_arrow,
@@ -322,10 +325,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                 ),
                 Text(
                   'Select Date',
-                  style: GoogleFonts.roboto(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
+                  style: textStyleRoboto.copyWith(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),

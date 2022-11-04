@@ -1,6 +1,6 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:odc_movie_theater/view/components/auth/components.dart';
 import '../../../res/colors.dart';
 
 Widget buildTicketButton({required name, required onPress}) {
@@ -16,14 +16,11 @@ Widget buildTicketButton({required name, required onPress}) {
           color: mainColor,
         ),
         child: Center(
-          child: Text(
-            name,
-            style: GoogleFonts.roboto(
-              fontSize: 11,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
-          ),
+          child: Text(name,
+              style: textStyleRoboto.copyWith(
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+              )),
         ),
       ),
     ),
@@ -91,12 +88,9 @@ Widget buildTickets(
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
                     child: Text(
-                      "$name",
-                      style: GoogleFonts.roboto(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
-                    ),
+                        "$name",
+                        style: textStyleRoboto.copyWith(
+                            fontSize: 13, fontWeight: FontWeight.w700)),
                   ),
                   Row(
                     children: [
@@ -108,10 +102,10 @@ Widget buildTickets(
                         padding: const EdgeInsets.only(left: 10),
                         child: Text(
                           "$date",
-                          style: GoogleFonts.roboto(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
+                          style: textStyleRoboto.copyWith(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ],
@@ -129,10 +123,10 @@ Widget buildTickets(
                         padding: const EdgeInsets.only(left: 10),
                         child: Text(
                           "$position",
-                          style: GoogleFonts.roboto(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
+                          style: textStyleRoboto.copyWith(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ],
@@ -178,140 +172,153 @@ Widget buildViewTicket({
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Movie: $movie',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.roboto(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                ),),
-              const SizedBox(height: 25,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  Text(
+                    'Movie: $movie',
+                    textAlign: TextAlign.center,
+                    style: textStyleRoboto.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Name',
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                        ),),
-                      const SizedBox(height: 10,),
-                      Text(
-                        '$name',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),),
-
-                      const SizedBox(height: 25,),
-
-                      Text(
-                        'Date',
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                        ),),
-                      const SizedBox(height: 10,),
-                      Text(
-                        '$date',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),),
-
-                      const SizedBox(height: 25,),
-
-                      Text(
-                        'NP Order',
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                        ),),
-                      const SizedBox(height: 10,),
-                      Text(
-                        '$npOrder',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),),
-
-                    ],
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Name',
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '$name',
+                            textAlign: TextAlign.center,
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Text(
+                            'Date',
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '$date',
+                            textAlign: TextAlign.center,
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Text(
+                            'NP Order',
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '$npOrder',
+                            textAlign: TextAlign.center,
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                   ),
                   const Spacer(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Seats',
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                        ),),
-                      const SizedBox(height: 10,),
-                      Text(
-                        '$seats',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),),
-
-                      const SizedBox(height: 25,),
-
-                      Text(
-                        'Time',
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                        ),),
-                      const SizedBox(height: 10,),
-                      Text(
-                        '$time',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),),
-
-                      const SizedBox(height: 25,),
-
-                      Text(
-                        'Price',
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                        ),),
-                      const SizedBox(height: 10,),
-                      Text(
-                        '$price',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),),
-                    ],
+                          Text(
+                            'Seats',
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '$seats',
+                            textAlign: TextAlign.center,
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Text(
+                            'Time',
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '$time',
+                            textAlign: TextAlign.center,
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Text(
+                            'Price',
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '$price',
+                            textAlign: TextAlign.center,
+                            style: textStyleRoboto.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                   ),
 
                 ],
