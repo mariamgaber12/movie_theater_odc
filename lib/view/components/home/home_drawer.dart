@@ -18,7 +18,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: firstColor,
+      backgroundColor: firstColor.withOpacity(.95),
       child: ListView(children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +63,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               height: 50,
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 buildDrawerList(
                   title: 'Account',

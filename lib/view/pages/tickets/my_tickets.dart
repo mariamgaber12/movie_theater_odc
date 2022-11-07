@@ -93,7 +93,7 @@ class MyTickets extends StatelessWidget {
                       image: 'assets/card.png',
                       name: 'Spider Man No Way',
                       position: '4 Seats',
-                      date: "9:00pm | 20 February",
+                      date: "11:00pm | 27 February",
                       onPressTicket: () {
                         navigateTo(context, const ViewTicket());
                       },

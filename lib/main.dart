@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 import 'package:odc_movie_theater/view/pages/authentication/splash.dart';
-import 'package:odc_movie_theater/view/pages/checkout/movie_details.dart';
 import 'package:odc_movie_theater/view_model/cubit/authentication/auth_cubit.dart';
+import 'package:odc_movie_theater/view_model/cubit/movie_cast/movie_cast_cubit.dart';
 import 'package:odc_movie_theater/view_model/database/network/dio_helper.dart';
 import 'view_model/cubit/main/main_cubit.dart';
 import 'view_model/database/local/shared_preference/cache_helper.dart';
@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AuthenticationCubit(),
         ),
+        BlocProvider(
+          create: (context) => MovieCastCubit()..getAllMovieCast(),
+        ),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.red,
           drawerTheme: DrawerThemeData(
             backgroundColor: firstColor,
-            width: 200,
+            width: 280,
             elevation: 2,
             scrimColor: Colors.transparent,
           ),

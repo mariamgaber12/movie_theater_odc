@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odc_movie_theater/view_model/models/tickets/tickets.dart';
@@ -19,7 +20,7 @@ class TicketsCubit extends Cubit<TicketsState> {
     allTickets.clear();
     emit(GetAllTicketsLoadingState());
     DioHelper.getData(
-      url: ticketsEndPoint,
+      url: getTicketsEndPoint,
       token: CacheKeysManger.getUserTokenFromCache(),
     ).then((value) {
       print(value.data);
@@ -34,39 +35,31 @@ class TicketsCubit extends Cubit<TicketsState> {
     });
   }
 
-/*
-  void getAllTickets() {
-    allTickets.clear();
-    todayTickets.clear();
-    upcomingTickets.clear();
-    emit(GetAllTicketsLoadingState());
-    DioHelper.getData(
-      url: ticketsEndPoint,
-      token: accessToken,
+  Tickets bookTicketsResponse = Tickets();
+
+  Future<void> bookTickets({
+    required List<String> seats,
+    required movieDateId,
+    required additionalProp1,
+  }) async {
+    emit(BookTicketsLoadingState());
+    var data = {
+      "seats": seats,
+      "movieDateId": movieDateId,
+      "additionalProp1": {}
+    };
+    await DioHelper.postData(
+      url: bookTicketsEndPoint,
+      data: data,
     ).then((value) {
-      _getTodayTickets(value);
-      _getUpcomingTickets(value);
-      emit(GetAllTicketsSuccessfulState());
+      print(value.data);
+      bookTicketsResponse = Tickets.fromJson(value.data);
+      emit(BookTicketsSuccessfulState());
     }).catchError((error) {
-      debugPrint(error.toString());
-      emit(GetAllTicketsErrorState());
+      if (error is DioError) {
+        emit(BookTicketsErrorState(
+            message: error.response!.data["message"].toString()));
+      }
     });
   }
-
-  void _getTodayTickets(Response<dynamic> response) {
-    todayTickets.clear();
-    for (var element in response.data['data']['today']) {
-      allTickets.add(Tickets.fromJson(element));
-      todayTickets.add(Tickets.fromJson(element));
-    }
-  }
-
-  void _getUpcomingTickets(Response<dynamic> response) {
-    upcomingTickets.clear();
-    for (var element in response.data['data']['upcoming']) {
-      allTickets.add(Tickets.fromJson(element));
-      upcomingTickets.add(Tickets.fromJson(element));
-    }
-  }
-*/
 }

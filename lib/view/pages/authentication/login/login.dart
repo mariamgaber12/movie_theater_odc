@@ -5,6 +5,7 @@ import '../../../../res/colors.dart';
 import '../../../../view_model/cubit/authentication/auth_cubit.dart';
 import '../../../../view_model/cubit/authentication/auth_states.dart';
 import '../../../components/auth/components.dart';
+import '../facebook_auth.dart';
 import '../register/register.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -59,95 +60,94 @@ class LoginScreen extends StatelessWidget {
                     listener: (context, state) {},
                     builder: (context, state) {
                       var authCubit = AuthenticationCubit.get(context);
-                      return Form(
-                        key: formKey,
-                        child: Column(
-                          children: [
-                            defaultTaskFormField(
-                                controller: emailController,
-                                hint: 'E-Mail',
-                                type: TextInputType.emailAddress,
-                                validate: (String? value) {
-                                  value = emailController.text;
-                                  if (value.isEmpty) {
-                                    return ('Please Enter E-Mail');
-                                  } else {
-                                    return null;
-                                  }
-                                }),
-                            const SizedBox(
-                              height: 25,
-                            ),
-                            defaultTaskFormField(
-                              controller: passController,
-                              hint: 'Password',
-                              obscure: !authCubit.passwordVisibleL,
-                              suffixIcon: IconButton(
-                                icon: Icon(authCubit.passwordVisibleL == false
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                                onPressed: () {
-                                 authCubit.changePassVisibilityLogin();
-                                },
-                                color: thirdColor,
-                              ),
-                              type: TextInputType.visiblePassword,
-                              validate: (value) {
-                                if (value.isEmpty) {
-                                  return ('Please Enter Password');
-                                }
-                                return null;
-                              },
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 42),
-                                  child: TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        'Forgot Password?',
-                                        style: textStyleRoboto.copyWith(
-                                          fontSize: 9,
-                                          decoration: TextDecoration.underline,
-                                          fontWeight: FontWeight.w400,
-                                          color: mainColor,
-                                        ),
-                                      )),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 44,
-                            ),
-                                 buildButton(
-                                    name: 'Login',
-                                    onPress: () {
-                                      if (!formKey.currentState!.validate()) {
-                                        return;
-                                      }
-                                      authCubit.login(
-                                          email: emailController.text,
-                                          password: passController.text,
-                                          context: context);
-                                    }),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(
-                    height: 34,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+              return Column(children: [
+                Form(
+                  key: formKey,
+                  child: Column(
                     children: [
-                      Text(
-                        "Don't have an account?",
-                        style: textStyleRoboto.copyWith(
-                            fontSize: 15, fontWeight: FontWeight.w600),
+                      defaultTaskFormField(
+                          controller: emailController,
+                          hint: 'E-Mail',
+                          type: TextInputType.emailAddress,
+                          validate: (String? value) {
+                            value = emailController.text;
+                            if (value.isEmpty) {
+                              return ('Please Enter E-Mail');
+                            } else {
+                              return null;
+                            }
+                          }),
+                      const SizedBox(
+                        height: 25,
                       ),
+                      defaultTaskFormField(
+                        controller: passController,
+                        hint: 'Password',
+                        obscure: !authCubit.passwordVisibleL,
+                        suffixIcon: IconButton(
+                          icon: Icon(authCubit.passwordVisibleL == false
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            authCubit.changePassVisibilityLogin();
+                          },
+                          color: thirdColor,
+                        ),
+                        type: TextInputType.visiblePassword,
+                        validate: (value) {
+                          if (value.isEmpty) {
+                            return ('Please Enter Password');
+                          }
+                          return null;
+                        },
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 42),
+                            child: TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  'Forgot Password?',
+                                  style: textStyleRoboto.copyWith(
+                                    fontSize: 9,
+                                    decoration: TextDecoration.underline,
+                                    fontWeight: FontWeight.w400,
+                                    color: mainColor,
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 44,
+                      ),
+                      buildButton(
+                          name: 'Login',
+                          onPress: () {
+                            if (!formKey.currentState!.validate()) {
+                              return;
+                            }
+                            authCubit.login(
+                                email: emailController.text,
+                                password: passController.text,
+                                context: context);
+                          }),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 34,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don't have an account?",
+                      style: textStyleRoboto.copyWith(
+                          fontSize: 15, fontWeight: FontWeight.w600),
+                    ),
                       TextButton(
                         onPressed: () {
                           navigateTo(context, const SignupScreen());
@@ -183,17 +183,29 @@ class LoginScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset('assets/twitter.svg'),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      SvgPicture.asset('assets/facebook.svg'),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      SvgPicture.asset('assets/google.svg'),
-                    ],
-                  ),
+                    GestureDetector(
+                        child: SvgPicture.asset('assets/twitter.svg')),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          navigateTo(context, const MyFacebook());
+                        },
+                        child: SvgPicture.asset('assets/facebook.svg')),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          authCubit.googleLogin();
+                        },
+                        child: SvgPicture.asset('assets/google.svg')),
+                  ],
+                ),
+              ]);
+            },
+          ),
                   const SizedBox(
                     height: 44.1,
                   ),

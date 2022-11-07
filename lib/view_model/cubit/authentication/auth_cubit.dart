@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 import 'package:odc_movie_theater/view/pages/tickets/my_tickets.dart';
 import '../../../view/pages/home/home.dart';
@@ -9,14 +11,17 @@ import '../../../view/pages/search/search.dart';
 import '../../database/local/shared_preference/cache_helper.dart';
 import '../../database/network/dio_helper.dart';
 import '../../database/network/end_points.dart';
-import '../../models/data_user.dart';
+import '../../models/auth/data_user.dart';
 import 'auth_states.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(LoginInitial());
+
   static AuthenticationCubit get(context) => BlocProvider.of(context);
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   List<Widget> homeScreens = [
     const Home(),
@@ -24,6 +29,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     const Search(),
   ];
   int currentNavBarItem = 0;
+
   void changeCurrentNavBarItem(int index) {
     currentNavBarItem = index;
     if (index == 0) {
@@ -58,28 +64,26 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   UserData signupResponse=UserData();
+
   Future<void> signup(
       {required String userName,
-        required String email,
-        required String password,context}) async{
+      required String email,
+      required String password,
+      context}) async {
     emit(SignupLoadingState());
-    DioHelper.postData(url: registerEndPoint, data: {
-      "firstName": userName,
-      "email": email,
-      "password": password
-    }).then((value) {
+    await DioHelper.postData(
+            url: registerEndPoint,
+            data: {"name": userName, "email": email, "password": password})
+        .then((value) {
       signupResponse = UserData.fromJson(value.data);
       CacheHelper.saveData(
           key: "accessToken", value: signupResponse.accessToken);
-      CacheHelper.saveData(
-          key: "userId", value: signupResponse.data!.id);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeLayout(),
+          builder: (context) => const HomeLayout(),
         ),
       );
-
       emit(SignupSuccessfulState());
     }).catchError((error) {
       if (error is DioError) {
@@ -103,11 +107,10 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     ).then((value) {
       loginResponse = UserData.fromJson(value.data);
       CacheHelper.saveData(key: "accessToken", value: loginResponse.accessToken);
-      CacheHelper.saveData(key: "userId", value: loginResponse.data!.id!);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeLayout() as Widget,
+          builder: (context) => const HomeLayout(),
         ),
       );
       showTopSnackBar(
@@ -134,4 +137,43 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     });
   }
 
+  GoogleSignIn googleSignIn = GoogleSignIn();
+
+  //GoogleSignIn googleSignIn = GoogleSignIn();
+  GoogleSignInAccount? _user;
+
+  Future googleLogin() async {
+    emit(LoginLoadingState());
+    final googleUser = await googleSignIn.signIn();
+    if (googleSignIn == null) {
+      emit(LoginErrorState(message: "something went wrong.."));
+      return;
+    }
+    _user = googleUser;
+    final googleAuth = await googleUser!.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    await FirebaseAuth.instance.signInWithCredential(credential);
+    UserData? googleAuthResponse;
+    DioHelper.postData(
+      url: googleEndPoint,
+      data: {
+        "id": _user!.id,
+        "email": _user!.email,
+        "firstName": _user!.displayName!.split(' ')[0],
+        "lastName": _user!.displayName!.split(' ')[1],
+        "picture": _user!.photoUrl,
+      },
+    ).then((value) {
+      googleAuthResponse = UserData.fromJson(value.data);
+      CacheHelper.saveData(
+          key: "accessToken", value: googleAuthResponse!.accessToken);
+      CacheHelper.saveData(key: "userId", value: googleAuthResponse!.data!.id);
+
+      emit(LoginSuccessfulState());
+    });
+  }
 }

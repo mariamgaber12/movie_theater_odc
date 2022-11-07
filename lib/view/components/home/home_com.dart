@@ -22,13 +22,20 @@ Widget buildCardMovie(
     onTap: onTap,
     child: Stack(children: [
       Container(
-        height: 210,
-        color: Colors.transparent,
-        child: Image.network(
-          image,
-          fit: BoxFit.cover,
-          width: 153.24,
-          height: 202.72,
+        height: 203.17832946777344,
+        width: 153.409912109375,
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(.09),
+          borderRadius: BorderRadius.circular(7),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(7.0),
+          child: Image.network(
+            image,
+            fit: BoxFit.cover,
+            width: 153.24,
+            height: 202.72,
+          ),
         ),
       ),
       Positioned(
@@ -39,14 +46,17 @@ Widget buildCardMovie(
             padding: const EdgeInsets.all(7),
             width: 150,
             height: 70,
-            child: Text('$name',
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.clip,
-                softWrap: false,
-                style: textStyleRoboto.copyWith(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                )),
+            child: Expanded(
+              child: Text('$name',
+                  maxLines: 3,
+                  overflow: TextOverflow.visible,
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                  style: textStyleRoboto.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  )),
+            ),
           ),
         ),
       )
@@ -56,17 +66,19 @@ Widget buildCardMovie(
 
 Widget buildIndicator({required activeIndex}) {
   return AnimatedSmoothIndicator(
-    activeIndex: activeIndex,
-    count: 3,
+    activeIndex: activeIndex = 2,
+    count: 5,
+    duration: const Duration(milliseconds: 55),
+    curve: Curves.easeInOut,
     effect: ScrollingDotsEffect(
       activeDotColor: mainColor,
-      activeStrokeWidth: 2.7,
-      activeDotScale: 1.7,
+      activeStrokeWidth: 2.5,
+      activeDotScale: 1.5,
       maxVisibleDots: 5,
-      radius: 8.9,
+      radius: 8.7,
       spacing: 10,
-      dotHeight: 12,
-      dotWidth: 12,
+      dotHeight: 11.5,
+      dotWidth: 11.5,
     ),
   );
 }
@@ -75,22 +87,25 @@ Widget buildComingMovie(
     {required image, required index, required name, required date}) {
   return Stack(children: [
     Container(
-      width: 281,
-      height: 179,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: Colors.transparent,
-      ),
       padding: const EdgeInsets.only(
         top: 12,
         right: 2.3,
         left: .52,
       ),
-      child: Image.network(
-        image,
-        fit: BoxFit.cover,
-        width: 283.24,
-        height: 162,
+      height: 179,
+      width: 281,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+        color: thirdColor.withOpacity(.05),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15.0),
+        child: Image.network(
+          image,
+          fit: BoxFit.cover,
+          width: 281,
+          height: 162,
+        ),
       ),
     ),
     Positioned(

@@ -3,28 +3,34 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:odc_movie_theater/res/colors.dart';
 import 'package:odc_movie_theater/view/pages/checkout/checkout_pay.dart';
-
 import '../../components/auth/components.dart';
 import '../../components/checkout/checkout_com.dart';
 
-class Reservation extends StatelessWidget {
+class Reservation extends StatefulWidget {
   const Reservation({Key? key}) : super(key: key);
 
+  @override
+  State<Reservation> createState() => _ReservationState();
+}
+
+bool selected = false;
+
+class _ReservationState extends State<Reservation> {
   @override
   Widget build(BuildContext context) {
     List<String> timeList = [
       '6:30pm',
       '9:00pm',
-      '11:30am',
+      '12:30am',
       '6:30pm',
       '9:00pm',
-      '11:30am',
+      '12:30am',
       '6:30pm',
       '9:00pm',
-      '11:30am',
+      '12:30am',
       '6:30pm',
       '9:00pm',
-      '11:30am'
+      '12:30am'
     ];
 
     return Scaffold(
@@ -71,9 +77,10 @@ class Reservation extends StatelessWidget {
 
               CurvedCarousel(
                 scaleMiddleItem: true,
-                horizontalPadding: 30,
-                curveScale: -14,
+                horizontalPadding: 25,
+                curveScale: -15,
                 middleItemScaleRatio: 1,
+                animationDuration: 100,
                 viewPortSize: .2,
                 itemBuilder: (_, index) {
                   return buildMovieTime(time: timeList[index]);
@@ -81,15 +88,14 @@ class Reservation extends StatelessWidget {
                 itemCount: timeList.length,
               ),
 
+              const SizedBox(
+                height: 15,
+              ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('.',
-                      style: textStyleRoboto.copyWith(
-                          fontSize: 35,
-                          fontWeight: FontWeight.w900,
-                          color: mainColor)),
+                  Icon(Icons.fiber_manual_record, color: mainColor, size: 15),
                 ],
               ),
               const SizedBox(
@@ -107,7 +113,9 @@ class Reservation extends StatelessWidget {
                   )
                 ],
               ),
+
               //theater seats
+/*
               Column(
                 children: [
                   Row(
@@ -354,6 +362,45 @@ class Reservation extends StatelessWidget {
                     ],
                   ),
                 ],
+              ),
+
+ */
+              Center(
+                child: Positioned(
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 80, left: 15),
+                    width: MediaQuery.of(context).size.width * .9,
+                    height: MediaQuery.of(context).size.height * .5,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 6,
+                        //crossAxisSpacing: 5,
+                        //mainAxisSpacing: 5,
+                        // mainAxisExtent: 150
+                      ),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, index) {
+                        return InkWell(
+                            onTap: () {
+                              setState(() {
+                                selected = !selected;
+                              });
+                            },
+                            child: selected
+                                ? Icon(
+                                    Icons.event_seat,
+                                    color: mainColor,
+                                  )
+                                : Icon(
+                                    Icons.event_seat_outlined,
+                                    color: thirdColor,
+                                  ));
+                      },
+                      itemCount: 36,
+                    ),
+                  ),
+                ),
               ),
 
               const SizedBox(

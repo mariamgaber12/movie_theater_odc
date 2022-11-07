@@ -66,10 +66,11 @@ class HomeCubit extends Cubit<HomeState> {
     emit(SearchLoadingState());
     for (var element in movies) {
       if (element.name!.contains(word)) {
-       print('hello00000000000');
+        print('hello00000000000');
         searchedMovies.add(element);
       }
     }
     emit(SearchSuccessState());
   }
 }
+//&Gaber+Nana+2022&

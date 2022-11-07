@@ -50,9 +50,8 @@ class Home extends StatelessWidget {
             return Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image:
-                    AssetImage('assets/card.png')
-                    ,fit: BoxFit.cover,
+                    image: AssetImage('assets/card.png'),
+                    fit: BoxFit.cover,
                     opacity: .35),
               ),
               child: ListView(
@@ -95,11 +94,12 @@ class Home extends StatelessWidget {
                               color: mainColor,
                             )
                           : CurvedCarousel(
-                              scaleMiddleItem: true,
-                              horizontalPadding: 99,
+                        scaleMiddleItem: true,
+                              horizontalPadding: 55,
                               curveScale: -20,
-                              middleItemScaleRatio: 1.3,
-                              viewPortSize: .001,
+                              animationDuration: 55,
+                              middleItemScaleRatio: 1.25,
+                              viewPortSize: .78,
                               onChangeStart: (index, reason) =>
                                   movieCubit.changeActiveIndicator(index),
                               itemBuilder: (_, index) {
@@ -108,7 +108,19 @@ class Home extends StatelessWidget {
                                       navigateTo(
                                           context,
                                           MovieDetails(
+                                            duration: movieCubit
+                                                .comingMovies[index].duration!,
                                             movieId: index,
+                                            name: movieCubit
+                                                .comingMovies[index].name!,
+                                            overview: movieCubit
+                                                .comingMovies[index].overview!,
+                                            rating: movieCubit
+                                                .comingMovies[index].rating!,
+                                            image: movieCubit
+                                                .comingMovies[index].imageUrl!,
+                                            genre: movieCubit
+                                                .comingMovies[index].genre!,
                                           ));
                                     },
                                     image:
@@ -148,7 +160,7 @@ class Home extends StatelessWidget {
                           ? CircularProgressIndicator(
                               color: mainColor,
                             )
-                          : Container(
+                          : SizedBox(
                               height: 200,
                               child: CarouselSlider.builder(
                                 itemCount: comingMovieCubit.comingMovies.length,

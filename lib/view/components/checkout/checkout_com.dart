@@ -176,18 +176,17 @@ Widget buildBottomNav({required onTap, required name}) {
   );
 }
 
-Widget buildMovieCast() {
+Widget buildMovieCast({required image, required name}) {
   return Padding(
     padding: const EdgeInsets.all(10),
     child: Column(
       children: [
-        Image.asset(
-          'assets/card.png',
+        Image.network(
+          image,
           width: 80,
           height: 100,
         ),
-        Text(
-            'Tom Holland',
+        Text(name,
             style: textStyleRoboto.copyWith(
               fontSize: 11,
               fontWeight: FontWeight.w400,
@@ -197,7 +196,8 @@ Widget buildMovieCast() {
   );
 }
 
-Widget buildDateCard({required day, required onTap, required color}) {
+Widget buildDateCard(
+    {required day, required onTap, required color, required month}) {
   return Padding(
     padding: const EdgeInsets.all(5),
     child: GestureDetector(
@@ -220,12 +220,11 @@ Widget buildDateCard({required day, required onTap, required color}) {
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   )),
-              //SizedBox(height: 8,),
               Text(
-                  'February',
+                  month,
                   style: textStyleRoboto.copyWith(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w400,
                   )),
             ],
           ),
