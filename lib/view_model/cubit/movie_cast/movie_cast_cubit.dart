@@ -12,20 +12,18 @@ class MovieCastCubit extends Cubit<MovieCastState> {
   static MovieCastCubit get(context) => BlocProvider.of(context);
 
   List<MovieCast> movieCast = [];
-  void getAllMovieCast() {
+
+  void getAllMovieCast({required id}) async {
+    movieCast.clear();
     emit(GetAllMovieCastLoadingState());
-    DioHelper.getData(
-      url: castMoviesEndPoint,
+    await DioHelper.getData(
+      url: 'movies/$id/casts',
       token: CacheKeysManger.getUserTokenFromCache(),
     ).then((value) {
-      if (value.statusCode == 200) {
-        print('hellooo cast ${value.statusCode}');
-      } else {
-        print('hellooo cast ${value.statusCode}');
-      }
       for (var element in value.data) {
         movieCast.add(MovieCast.fromJson(element));
       }
+      print(movieCast.length);
       emit(GetAllMovieCastSuccessfulState());
     }).catchError((error) {
       debugPrint(error.toString());

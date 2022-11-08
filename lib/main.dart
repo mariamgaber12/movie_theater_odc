@@ -28,9 +28,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AuthenticationCubit(),
         ),
-        BlocProvider(
-          create: (context) => MovieCastCubit()..getAllMovieCast(),
-        ),
       ],
       child: MaterialApp(
         theme: ThemeData(

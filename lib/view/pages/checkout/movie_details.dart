@@ -69,288 +69,292 @@ class MovieDetails extends StatelessWidget {
     ];
 
     return Scaffold(
-        body: ListView(
-          children: [
-            SizedBox(
-              height: 240,
-              child: Stack(
-                children: [
-                  Stack(
+        body: BlocProvider(
+          create: (context) => MovieCastCubit()..getAllMovieCast(id: movieId),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 240,
+                  child: Stack(
                     children: [
-                      Image.network(
-                        image,
-                        height: 220,
-                        fit: BoxFit.fitWidth,
-                        width: double.infinity,
+                      Stack(
+                        children: [
+                          Image.network(
+                            image,
+                            height: 220,
+                            fit: BoxFit.fitWidth,
+                            width: double.infinity,
+                          ),
+                          Positioned(
+                              top: 85,
+                              right: 140,
+                              left: 140,
+                              child: Icon(
+                                Icons.play_arrow_rounded,
+                                size: 55,
+                                color: secondColor,
+                              )),
+                          Positioned(
+                              top: 20,
+                              left: 10,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  size: 30,
+                                  color: secondColor,
+                                ),
+                              )),
+                        ],
                       ),
                       Positioned(
-                          top: 85,
-                          right: 140,
-                          left: 140,
-                          child: Icon(
-                            Icons.play_arrow_rounded,
-                            size: 55,
-                            color: secondColor,
-                          )),
-                      Positioned(
-                          top: 20,
-                          left: 10,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Icon(
-                              Icons.arrow_back,
-                              size: 30,
-                              color: secondColor,
-                            ),
-                          )),
-                    ],
-                  ),
-                  Positioned(
-                    top: 185,
-                    left: 60,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          name,
-                          style: textStyleRoboto.copyWith(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        Row(
+                        top: 185,
+                        left: 60,
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'PG-13',
+                              name,
                               style: textStyleRoboto.copyWith(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                             const SizedBox(
-                              width: 8,
+                              height: 12,
                             ),
-                            Icon(Icons.fiber_manual_record,
-                                color: mainColor, size: 12.5),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              formattedTime(timeInSeconds: duration),
-                              style: textStyleRoboto.copyWith(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Icon(Icons.fiber_manual_record,
-                                color: mainColor, size: 12.5),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              genre,
-                              style: textStyleRoboto.copyWith(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'PG-13',
+                                  style: textStyleRoboto.copyWith(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Icon(Icons.fiber_manual_record,
+                                    color: mainColor, size: 12.5),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  formattedTime(timeInSeconds: duration),
+                                  style: textStyleRoboto.copyWith(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Icon(Icons.fiber_manual_record,
+                                    color: mainColor, size: 12.5),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  genre,
+                                  style: textStyleRoboto.copyWith(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RatingBar.readOnly(
+                      filledIcon: Icons.star,
+                      emptyIcon: Icons.star_border,
+                      halfFilledIcon: Icons.star_half,
+                      size: 25,
+                      filledColor: mainColor,
+                      emptyColor: thirdColor,
+                      halfFilledColor: mainColor,
+                      isHalfAllowed: true,
+                      direction: Axis.horizontal,
+                      initialRating: (rating / 2),
+                      maxRating: 5,
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                RatingBar.readOnly(
-                  filledIcon: Icons.star,
-                  emptyIcon: Icons.star_border,
-                  halfFilledIcon: Icons.star_half,
-                  size: 25,
-                  filledColor: mainColor,
-                  emptyColor: thirdColor,
-                  halfFilledColor: mainColor,
-                  isHalfAllowed: true,
-                  direction: Axis.horizontal,
-                  initialRating: (rating / 2),
-                  maxRating: 5,
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  '$rating',
-                  style: textStyleRoboto.copyWith(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 25,
-                ),
-                Text(
-                  'Synopsis',
-                  style: textStyleRoboto.copyWith(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 25,
-                ),
-                Expanded(
-                  child: Text(
-                    overview,
-                    maxLines: 15,
-                    overflow: TextOverflow.visible,
-                    textAlign: TextAlign.justify,
-                    softWrap: true,
-                    style: textStyleRoboto.copyWith(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
+                    const SizedBox(
+                      width: 20,
                     ),
-                  ),
+                    Text(
+                      '$rating',
+                      style: textStyleRoboto.copyWith(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(
-                  width: 10,
+                  height: 20,
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    Text(
+                      'Synopsis',
+                      style: textStyleRoboto.copyWith(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(
-                  width: 25,
+                  height: 20,
                 ),
-                Text(
-                  'Cast & Crew',
-                  style: textStyleRoboto.copyWith(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const Spacer(),
-                TextButton(
-                    onPressed: () {},
-                    child: Row(
-                      children: [
-                        Text(
-                          'See All',
-                          style: textStyleRoboto.copyWith(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w500,
-                          ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    Expanded(
+                      child: Text(
+                        overview,
+                        maxLines: 15,
+                        overflow: TextOverflow.visible,
+                        textAlign: TextAlign.justify,
+                        softWrap: true,
+                        style: textStyleRoboto.copyWith(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
                         ),
-                        Icon(
-                          Icons.double_arrow,
-                          size: 13,
-                          color: mainColor,
-                        ),
-                      ],
-                    )),
-                const SizedBox(
-                  width: 15,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            BlocConsumer<MovieCastCubit, MovieCastState>(
-              listener: (context, state) {},
-              builder: (context, state) {
-                var castCubit = MovieCastCubit.get(context)..getAllMovieCast();
-                return castCubit.movieCast.isEmpty
-                    ? CircularProgressIndicator(
-                        color: mainColor,
-                      )
-                    : Row(
-                        children: [
-                          const SizedBox(
-                            width: 25,
-                          ),
-                          ListView.builder(
-                            itemBuilder: (BuildContext context, int index) {
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    Text(
+                      'Cast & Crew',
+                      style: textStyleRoboto.copyWith(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const Spacer(),
+                    TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          children: [
+                            Text(
+                              'See All',
+                              style: textStyleRoboto.copyWith(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Icon(
+                              Icons.double_arrow,
+                              size: 13,
+                              color: mainColor,
+                            ),
+                          ],
+                        )),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                  ],
+                ),
+                BlocConsumer<MovieCastCubit, MovieCastState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    var castCubit = MovieCastCubit.get(context);
+                    return castCubit.movieCast.isEmpty
+                        ? CircularProgressIndicator(
+                            color: mainColor,
+                          )
+                        : CarouselSlider.builder(
+                            itemCount: castCubit.movieCast.length,
+                            itemBuilder: (context, index, realIndex) {
                               return buildMovieCast(
                                 image: castCubit.movieCast[index].imageUrl!,
                                 name: castCubit.movieCast[index].actorName!,
                               );
                             },
-                            itemCount: castCubit.movieCast.length,
-                          ),
-                        ],
-                      );
-              },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 25,
+                            options: CarouselOptions(
+                              reverse: true,
+                              autoPlayCurve: Curves.easeInOut,
+                              enableInfiniteScroll: false,
+                              height: 110,
+                              viewportFraction: .30,
+                            ),
+                          );
+                  },
                 ),
-                Text(
-                  'Select Date',
-                  style: textStyleRoboto.copyWith(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    Text(
+                      'Select Date',
+                      style: textStyleRoboto.copyWith(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                CarouselSlider.builder(
+                  itemCount: 28,
+                  itemBuilder: (context, index, realIndex) {
+                    return buildDateCard(
+                      color: Colors.white10,
+                      day: day[index],
+                      onTap: () {},
+                      month: 'November',
+                    );
+                  },
+                  options: CarouselOptions(
+                    enableInfiniteScroll: false,
+                    height: 100,
+                    pauseAutoPlayInFiniteScroll: true,
+                    viewportFraction: .19,
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
               ],
             ),
-            CarouselSlider.builder(
-              itemCount: 28,
-              itemBuilder: (context, index, realIndex) {
-                return buildDateCard(
-                  color: Colors.white10,
-                  day: day[index],
-                  onTap: () {},
-                  month: 'November',
-                );
-              },
-              options: CarouselOptions(
-                enableInfiniteScroll: false,
-                height: 100,
-                pauseAutoPlayInFiniteScroll: true,
-                viewportFraction: .19,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-          ],
+          ),
         ),
         bottomNavigationBar: buildBottomNav(
             onTap: () {

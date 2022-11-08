@@ -5,6 +5,7 @@ import '../../../../res/colors.dart';
 import '../../../../view_model/cubit/authentication/auth_cubit.dart';
 import '../../../../view_model/cubit/authentication/auth_states.dart';
 import '../../../components/auth/components.dart';
+import '../../home/home_layout.dart';
 import '../facebook_auth.dart';
 import '../register/register.dart';
 
@@ -43,23 +44,23 @@ class LoginScreen extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Login',
-                        style: textStyleSalsa.copyWith(
-                          fontSize: 38,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 46,
-                  ),
-                  BlocConsumer<AuthenticationCubit, AuthenticationState>(
-                    listener: (context, state) {},
-                    builder: (context, state) {
-                      var authCubit = AuthenticationCubit.get(context);
+            children: [
+              Text(
+                'Login',
+                style: textStyleSalsa.copyWith(
+                  fontSize: 38,
+                  fontWeight: FontWeight.w400,
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 46,
+          ),
+          BlocConsumer<AuthenticationCubit, AuthenticationState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              var authCubit = AuthenticationCubit.get(context);
               return Column(children: [
                 Form(
                   key: formKey,

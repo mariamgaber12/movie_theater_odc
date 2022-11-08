@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1085387087310",
+    "project_id": "movie-theater-odc",
+    "storage_bucket": "movie-theater-odc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085387087310:android:380bf07b67d7ce74a15f9f",
+        "android_client_info": {
+          "package_name": "com.example.odc_movie_theater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085387087310-h296de6lpmh36qriqf8b487detkc8nco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjfl6uTKdu1-4uzlEurOWneNlxTEk_9vQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085387087310-h296de6lpmh36qriqf8b487detkc8nco.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

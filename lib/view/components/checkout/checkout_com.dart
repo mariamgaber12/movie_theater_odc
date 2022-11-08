@@ -177,22 +177,35 @@ Widget buildBottomNav({required onTap, required name}) {
 }
 
 Widget buildMovieCast({required image, required name}) {
-  return Padding(
-    padding: const EdgeInsets.all(10),
-    child: Column(
-      children: [
-        Image.network(
-          image,
-          width: 80,
-          height: 100,
-        ),
-        Text(name,
-            style: textStyleRoboto.copyWith(
-              fontSize: 11,
-              fontWeight: FontWeight.w400,
-            )),
-      ],
-    ),
+  return Row(
+    children: [
+      const SizedBox(
+        width: 30,
+      ),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.all(const Radius.circular(10)),
+            child: Image.network(
+              image,
+              width: 70,
+              height: 90,
+            ),
+          ),
+          Expanded(
+            child: Text(name,
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.visible,
+                style: textStyleRoboto.copyWith(
+                  fontSize: 10.5,
+                  fontWeight: FontWeight.w400,
+                )),
+          ),
+        ],
+      ),
+    ],
   );
 }
 

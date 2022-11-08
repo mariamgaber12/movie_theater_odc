@@ -173,7 +173,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
           key: "accessToken", value: googleAuthResponse!.accessToken);
       CacheHelper.saveData(key: "userId", value: googleAuthResponse!.data!.id);
 
-      emit(LoginSuccessfulState());
+      if (value.statusCode == 200 || value.statusCode == 201)
+        emit(LoginSuccessfulState());
     });
   }
 }
